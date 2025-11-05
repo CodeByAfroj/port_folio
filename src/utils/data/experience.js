@@ -2,9 +2,9 @@ export const experiences = [
 
   {
     id: 1,
-    title: "FullStack Developer",
+    title: "Aspiring full-stack developer",
     company: "Learning And Practicing",
-    duration: "( 2024 -  2025)"
+    duration: "( 2024 - 2025)"
   },
   {
     id: 2,
