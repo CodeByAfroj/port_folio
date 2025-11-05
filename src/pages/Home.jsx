@@ -7,7 +7,7 @@ import Projects from "../components/homepage/projects/Projects";
 import Education from "../components/homepage/education/Education";
 import ContactSection from "../components/homepage/contact/ContactSection";
 import Navbar from "../components/Navbar";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import ScrollToTop from "../components/helper/scroll-to-top";
 
 function Home() {
