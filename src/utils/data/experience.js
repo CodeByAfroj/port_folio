@@ -1,15 +1,14 @@
 export const experiences = [
-
   {
     id: 1,
-    title: "Aspiring full-stack developer",
-    company: "Learning And Practicing",
-    duration: "( 2024 - 2025)"
+    title: "Full-Stack Developer (Learning & Project Development)",
+    company: "Actively improving skills and building real-world applications",
+    duration: "(2024 – Present)",
   },
   {
     id: 2,
-    title: "Self Employed",
-    company: "Code and build something in everyday.",
-    duration: "( 2025 - Present)"
+    title: "Open to Work",
+    company: "Looking for internships or entry-level developer roles",
+    duration: "(Present)",
   }
-]
+];

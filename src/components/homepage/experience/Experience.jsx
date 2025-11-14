@@ -10,7 +10,7 @@ import HoverOnCards from "../../helper/HoverOnCards";
 
 function Experience() {
   return (
-    <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+    <div id="experience" className="relative z-50 border-t mx-10 my-12 lg:my-24 border-[#25213b]">
       <img
         src="/section.svg"
         alt="Hero"
@@ -41,8 +41,8 @@ function Experience() {
             <div className="flex flex-col gap-6">
               {
                 experiences.map(experience => (
-                  <HoverOnCards color="rgba(0,200,255,0.7)">
-                  <GlowCard key={experience.id} identifier={`experience-${experience.id}`}>
+                  <HoverOnCards  key={experience.id} color="rgba(0,200,255,0.7)">
+                  <GlowCard identifier={`experience-${experience.id}`}>
                     <div className="p-3 relative">
                       <img
                         src="/blur-23.svg"

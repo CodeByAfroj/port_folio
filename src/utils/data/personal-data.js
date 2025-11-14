@@ -6,12 +6,10 @@ export const personalData = {
   email: 'mulaniafroj26@gmail.com',
   phone: '+917821016070',
   address: 'Latur , Maharashtra ',
-  github: 'https://github.com/',
-  facebook: 'https://www.facebook.com/',
+  github: 'https://github.com/CodeByAfroj',
   linkedIn: 'https://www.linkedin.com/in/afroj-mulani',
-  twitter: 'https://twitter.com/',
-  stackOverflow: 'https://stackoverflow.com/users/',
-  leetcode: "https://leetcode.com/",
+  twitter: 'https://x.com/afroj_mulani26',
+  leetcode: "https://leetcode.com/u/Coder_Afroj_26",
   devUsername: "",
   resume: "https://drive.google.com/"
 }

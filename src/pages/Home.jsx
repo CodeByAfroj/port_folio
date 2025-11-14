@@ -9,8 +9,11 @@ import ContactSection from "../components/homepage/contact/ContactSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/helper/scroll-to-top";
+import LogoLoop from "../components/helper/LogoLoop";
+import Skills from "../components/homepage/skills/Skills";
 
 function Home() {
+
   return (
       
    <>
@@ -18,10 +21,12 @@ function Home() {
     <Navbar/>
     <ScrollToTop/>
    
-         <div>
+         <div className="px-2">
       <HeroSection />
       <AboutSection />
       <Experience />
+      
+         <Skills/>  
       <Projects />
       <Education />
       <ContactSection />

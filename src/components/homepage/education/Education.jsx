@@ -46,8 +46,8 @@ function Education() {
             <div className="flex flex-col gap-6 ">
               {
                 educations.map(education => (
-                  <HoverOnCards className="" color="rgba(255,0,150,0.8)">
-                  <GlowCard  key={education.id}   identifier={`education-${education.id}`}>
+                  <HoverOnCards key={education.id}   className="" color="rgba(255,0,150,0.8)">
+                  <GlowCard   identifier={`education-${education.id}`}>
                 
                        
                       <img
