@@ -1,134 +1,144 @@
 "use client";
-// @flow strict
 import { isValidEmail } from "../../../utils/check-email";
-import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { TbMailForward } from "react-icons/tb";
 import { toast } from "react-toastify";
 import HoverOnCards from "../../helper/HoverOnCards";
+import emailjs from "@emailjs/browser";
 
 function ContactForm() {
-  const [error, setError] = useState({ email: false, required: false });
-  const [isLoading, setIsLoading] = useState(false);
-  const [userInput, setUserInput] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const form = useRef();
+
+  const [error, setError] = useState({
+    email: false,
+    required: false,
   });
 
-  const checkRequired = () => {
-    if (userInput.email && userInput.message && userInput.name) {
-      setError({ ...error, required: false });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validateForm = () => {
+    const formData = new FormData(form.current);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    if (!name || !email || !message) {
+      setError({ email: false, required: true });
+      return false;
     }
+
+    if (!isValidEmail(email)) {
+      setError({ email: true, required: false });
+      return false;
+    }
+
+    setError({ email: false, required: false });
+    return true;
   };
 
   const handleSendMail = async (e) => {
     e.preventDefault();
 
-    if (!userInput.email || !userInput.message || !userInput.name) {
-      setError({ ...error, required: true });
-      return;
-    } else if (error.email) {
-      return;
-    } else {
-      setError({ ...error, required: false });
-    };
+    if (!validateForm()) return;
 
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${process.env.VITE_PUBLIC_APP_URL}/api/contact`,
-        userInput
+
+      await emailjs.sendForm(
+        "service_72innvp",        // ✅ your service ID
+        "template_ky4sprs",       // ✅ your template ID
+        form.current,
+        "AzJoOdr0Op4yVhRHu"     // 🔥 regenerate and paste here
       );
 
       toast.success("Message sent successfully!");
-      setUserInput({
-        name: "",
-        email: "",
-        message: "",
-      });
+      form.current.reset();
+
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      console.error(error);
+      toast.error("Failed to send message!");
     } finally {
       setIsLoading(false);
-    };
+    }
   };
 
   return (
     <div>
-      <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">Contact with me</p>
-      <HoverOnCards color="rgba(255,0,150,0.8)" className="">
-      <div className="max-w-3xl text-white bg-transparent rounded-lg border border-[#464c6a] p-3 lg:p-5">
-        <p className="text-sm text-[#d3d8e8]">{"If you have any questions or concerns, please don't hesitate to contact me. I am open to any work opportunities that align with my skills and interests."}</p>
-        <div className="mt-6 flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <label className="text-base">Your Name: </label>
-            <input
-              className="bg-[#10172d] w-full border rounded-md border-[#353a52] focus:border-[#16f2b3] ring-0 outline-0 transition-all duration-300 px-3 py-2"
-              type="text"
-              maxLength="100"
-              required={true}
-              onChange={(e) => setUserInput({ ...userInput, name: e.target.value })}
-              onBlur={checkRequired}
-              value={userInput.name}
-            />
-          </div>
+      <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
+        Contact with me
+      </p>
 
-          <div className="flex flex-col gap-2">
-            <label className="text-base">Your Email: </label>
-            <input
-              className="bg-[#10172d] w-full border rounded-md border-[#353a52] focus:border-[#16f2b3] ring-0 outline-0 transition-all duration-300 px-3 py-2"
-              type="email"
-              maxLength="100"
-              required={true}
-              value={userInput.email}
-              onChange={(e) => setUserInput({ ...userInput, email: e.target.value })}
-              onBlur={() => {
-                checkRequired();
-                setError({ ...error, email: !isValidEmail(userInput.email) });
-              }}
-            />
-            {error.email && <p className="text-sm text-red-400">Please provide a valid email!</p>}
-          </div>
+     <HoverOnCards color="rgba(255,0,150,0.8)">
+  <div className="max-w-3xl w-full bg-[#111827]/80 backdrop-blur-md 
+  rounded-2xl shadow-2xl border border-[#1f2937] 
+  p-6 md:p-8 text-white">
 
-          <div className="flex flex-col gap-2">
-            <label className="text-base">Your Message: </label>
-            <textarea
-              className="bg-[#10172d] w-full border rounded-md border-[#353a52] focus:border-[#16f2b3] ring-0 outline-0 transition-all duration-300 px-3 py-2"
-              maxLength="500"
-              name="message"
-              required={true}
-              onChange={(e) => setUserInput({ ...userInput, message: e.target.value })}
-              onBlur={checkRequired}
-              rows="4"
-              value={userInput.message}
-            />
-          </div>
-          <div className="flex flex-col items-center gap-3">
-            {error.required && <p className="text-sm text-red-400">
-              All fiels are required!
-            </p>}
-            <button
-              className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-5 md:px-12 py-2.5 md:py-3 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold"
-              role="button"
-              onClick={handleSendMail}
-              disabled={isLoading}
-            >
-              {
-                isLoading ?
-                <span>Sending Message...</span>:
-                <span className="flex items-center gap-1">
-                  Send Message
-                  <TbMailForward size={20} />
-                </span>
-              }
-            </button>
-          </div>
-        </div>
-      </div>
-    </HoverOnCards>
+    <form
+      ref={form}
+      onSubmit={handleSendMail}
+      className="flex flex-col gap-5"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        className="bg-[#1f2937] border border-[#374151] 
+        focus:border-pink-500 outline-none 
+        px-4 py-3 rounded-lg transition-all"
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        className="bg-[#1f2937] border border-[#374151] 
+        focus:border-pink-500 outline-none 
+        px-4 py-3 rounded-lg transition-all"
+      />
+
+      <textarea
+        name="message"
+        placeholder="Your Message"
+        rows="4"
+        className="bg-[#1f2937] border border-[#374151] 
+        focus:border-pink-500 outline-none 
+        px-4 py-3 rounded-lg transition-all"
+      />
+
+      {error.required && (
+        <p className="text-red-400 text-sm text-center">
+          All fields are required!
+        </p>
+      )}
+
+      {error.email && (
+        <p className="text-red-400 text-sm text-center">
+          Invalid email address!
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="flex items-center justify-center gap-2 
+        bg-gradient-to-r from-pink-500 to-violet-600 
+        px-6 py-3 rounded-full font-semibold
+        transition-all hover:scale-105 active:scale-95"
+      >
+        {isLoading ? (
+          "Sending..."
+        ) : (
+          <>
+            Send Message
+            <TbMailForward size={20} />
+          </>
+        )}
+      </button>
+    </form>
+  </div>
+</HoverOnCards>
     </div>
   );
-};
+}
 
 export default ContactForm;
