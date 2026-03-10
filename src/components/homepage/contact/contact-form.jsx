@@ -5,6 +5,7 @@ import { TbMailForward } from "react-icons/tb";
 import { toast } from "react-toastify";
 import HoverOnCards from "../../helper/HoverOnCards";
 import emailjs from "@emailjs/browser";
+import GlowCard from "../../helper/glow-card";
 
 function ContactForm() {
   const form = useRef();
@@ -63,81 +64,86 @@ function ContactForm() {
   };
 
   return (
-    <div>
-      <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
-        Contact with me
-      </p>
+<div className="mx-10">
 
-     <HoverOnCards color="rgba(255,0,150,0.8)">
-  <div className="max-w-3xl w-full bg-[#111827]/80 backdrop-blur-md 
-  rounded-2xl shadow-2xl border border-[#1f2937] 
-  p-6 md:p-8 text-white">
+  <HoverOnCards color="rgba(255,0,150,0.8)">
+    
+    <GlowCard identifier="contact-card">
 
-    <form
-      ref={form}
-      onSubmit={handleSendMail}
-      className="flex flex-col gap-5"
-    >
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        className="bg-[#1f2937] border border-[#374151] 
-        focus:border-pink-500 outline-none 
-        px-4 py-3 rounded-lg transition-all"
-      />
+      <div className="relative max-w-3xl bg-[#111827]/50 backdrop-blur-md 
+      rounded-2xl shadow-2xl border border-[#1f2937] 
+      p-6 md:p-8 text-white">
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        className="bg-[#1f2937] border border-[#374151] 
-        focus:border-pink-500 outline-none 
-        px-4 py-3 rounded-lg transition-all"
-      />
+        <form
+          ref={form}
+          onSubmit={handleSendMail}
+          className="flex flex-col gap-5"
+        >
 
-      <textarea
-        name="message"
-        placeholder="Your Message"
-        rows="4"
-        className="bg-[#1f2937] border border-[#374151] 
-        focus:border-pink-500 outline-none 
-        px-4 py-3 rounded-lg transition-all"
-      />
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            className="bg-[#1f2937] border border-[#374151] 
+            focus:border-pink-500 outline-none 
+            px-4 py-3 rounded-lg transition-all"
+          />
 
-      {error.required && (
-        <p className="text-red-400 text-sm text-center">
-          All fields are required!
-        </p>
-      )}
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            className="bg-[#1f2937] border border-[#374151] 
+            focus:border-pink-500 outline-none 
+            px-4 py-3 rounded-lg transition-all"
+          />
 
-      {error.email && (
-        <p className="text-red-400 text-sm text-center">
-          Invalid email address!
-        </p>
-      )}
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="4"
+            className="bg-[#1f2937] border border-[#374151] 
+            focus:border-pink-500 outline-none 
+            px-4 py-3 rounded-lg transition-all"
+          />
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="flex items-center justify-center gap-2 
-        bg-gradient-to-r from-pink-500 to-violet-600 
-        px-6 py-3 rounded-full font-semibold
-        transition-all hover:scale-105 active:scale-95"
-      >
-        {isLoading ? (
-          "Sending..."
-        ) : (
-          <>
-            Send Message
-            <TbMailForward size={20} />
-          </>
-        )}
-      </button>
-    </form>
-  </div>
-</HoverOnCards>
-    </div>
+          {error.required && (
+            <p className="text-red-400 text-sm text-center">
+              All fields are required!
+            </p>
+          )}
+
+          {error.email && (
+            <p className="text-red-400 text-sm text-center">
+              Invalid email address!
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="flex items-center justify-center gap-2 
+            bg-gradient-to-r from-pink-500 to-violet-600 
+            px-6 py-3 rounded-full font-semibold
+            transition-all hover:scale-105 active:scale-95"
+          >
+            {isLoading ? "Sending..." : (
+              <>
+                Send Message
+                <TbMailForward size={20} />
+              </>
+            )}
+          </button>
+
+        </form>
+
+      </div>
+
+    </GlowCard>
+
+  </HoverOnCards>
+
+</div>
   );
 }
 

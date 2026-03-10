@@ -5,13 +5,20 @@ const Projects = () => {
 
   return (
     <div id='projects' className="relative z-50  my-12 lg:my-24">
-      <div className="sticky top-10">
-        <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-50 translate-x-1/2 filter blur-3xl  opacity-30"></div>
-        <div className="flex items-center justify-center relative">
-          <span className="bg-[#251e50] absolute   w-fit text-white px-5 py-3 text-xl rounded-md">
-            PROJECTS
+
+      <div className="flex justify-center -translate-y-[1px]">
+        <div className="w-3/4">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent  w-full" />
+        </div>
+      </div>
+
+      <div className="flex justify-center my-10 lg:py-8">
+        <div className="flex  items-center">
+          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
+            Projects
           </span>
-          <span className="w-full h-[2px] bg-[#231e43]"></span>
+          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
         </div>
       </div>
 

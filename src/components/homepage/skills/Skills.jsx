@@ -31,32 +31,44 @@ const Skills = () => {
 
   return (
     <>
-    <div id='skills' className=" relative w-full mt-20">
-      <div className="sticky top-10">
-        <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-50 translate-x-1/2 filter blur-3xl  opacity-30"></div>
-        <div className="flex items-center justify-center relative">
-          <span className="bg-[#251e50] absolute   w-fit text-white px-5 py-3 text-xl rounded-md">
-            SKILLS
-          </span>
-          <span className="w-full h-[2px] bg-[#231e43]"></span>
-        </div>
-      </div>
-              <div className="w-full max-w-6xl mt-18 h-[120px]">
-                <LogoLoop
-                  logos={techLogos}
-                  speed={100}
-                  direction="left"
-                  logoHeight={60}
-                  gap={50}
-                  pauseOnHover
-                  scaleOnHover
-                  fadeOut
-                  fadeOutColor="#ffffff"
-                />
+  <div id="skills" className="relative w-full mt-20">
 
-              </div>
+  {/* Top Gradient Line */}
+  <div className="flex justify-center -translate-y-[1px]">
+    <div className="w-3/4">
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
     </div>
-    
+  </div>
+
+  {/* Section Title */}
+  <div className="flex justify-center my-10 lg:py-8">
+    <div className="flex items-center gap-3">
+      <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+
+      <span className="bg-[#1a1443] text-white py-2 px-5 text-xl rounded-md">
+        Skills
+      </span>
+
+      <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+    </div>
+  </div>
+
+  {/* Logo Loop */}
+  <div className="w-full max-w-6xl mx-auto mt-16">
+    <LogoLoop
+      logos={techLogos}
+      speed={100}
+      direction="left"
+      logoHeight={60}
+      gap={50}
+      pauseOnHover
+      scaleOnHover
+      fadeOut
+      fadeOutColor="#ffffff"
+    />
+  </div>
+
+</div>
     
     </>
   )
