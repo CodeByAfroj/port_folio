@@ -5,7 +5,7 @@ const Projects = () => {
 
   return (
     <div id='projects' className="relative z-50  my-12 lg:my-24">
-
+     
       <div className="flex justify-center -translate-y-[1px]">
         <div className="w-3/4">
           <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent  w-full" />

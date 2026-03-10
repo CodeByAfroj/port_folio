@@ -8,7 +8,13 @@ import { personalData } from "../../../utils/data/personal-data";
 function AboutSection() {
   return (
     <div id="about" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-
+ <img
+        src="/section.svg"
+        alt="Hero"
+        width={1572}
+        height={795}
+        className="absolute top-0 -z-10"
+      />
        <div className="flex justify-center -translate-y-[1px]">
         <div className="w-3/4">
           <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent  w-full" />
@@ -25,10 +31,10 @@ function AboutSection() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         <div className="order-2 lg:order-1">
-          <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
+          <p className="font-medium mb-5 ml-12 text-[#16f2b3] text-xl uppercase">
             Who I am?
           </p>
-          <p className="text-gray-200 text-sm lg:text-lg">
+          <p className="text-gray-200 ml-12 text-sm lg:text-lg">
             {personalData.description}
           </p>
         </div>

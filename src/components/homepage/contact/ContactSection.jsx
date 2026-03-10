@@ -11,30 +11,23 @@ import GlowCard from '../../helper/glow-card';
 
 function ContactSection() {
   return (
-  <div id="contact" className="relative mt-24 text-white px-6">
+  <div id="contact" className="relative text-white   -mt-10">
 
 
-  <div className="flex justify-center -translate-y-[1px]">
-    <div className="w-3/4">
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
-    </div>
-  </div>
+
+  <div className="max-w-6xl mx-auto px-6 text-center mb-20">
+        <h2 className="text-4xl font-bold tracking-wide">
+          Contact Me
+        </h2>
+
+        <p className="text-gray-400 mt-4 max-w-lg mx-auto">
+          Interested in working together or discussing a project?
+          Feel free to reach out anytime.
+        </p>
+      </div>
 
 
-  <div className="flex justify-center my-6 lg:py-8">
-    <div className="flex items-center gap-3">
-      <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-
-      <span className="bg-[#1a1443] text-white py-2 px-5 text-xl rounded-md">
-        Contact Me 📞
-      </span>
-
-      <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-    </div>
-  </div>
-
-
-  <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start mb-10">
 
 
     
@@ -42,7 +35,7 @@ function ContactSection() {
 
   < HoverOnCards  color="rgba(255,0,150,0.8)">
     <GlowCard identifier="contact-info-card"> 
-           <div className="w-full p-6 lg:p-10 text-white  backdrop-blur-md shadow-2xl">
+           <div className="w-full p-6 lg:p-10 text-white  backdrop-blur-md ">
 
       <div className="flex flex-col gap-6 lg:gap-9">
 

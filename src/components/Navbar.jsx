@@ -13,8 +13,9 @@ function Navbar() {
             { name: "ABOUT", to: "#about" },
             { name: "EXPERIENCE", to: "#experience" },
             { name: "SKILLS", to: "#skills" },
-            { name: "EDUCATION", to: "#education" },
             { name: "PROJECTS", to: "#projects" },
+            { name: "EDUCATION", to: "#education" },
+            
           ]
 
   return (

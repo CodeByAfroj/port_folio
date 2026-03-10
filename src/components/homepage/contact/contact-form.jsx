@@ -70,14 +70,13 @@ function ContactForm() {
     
     <GlowCard identifier="contact-card">
 
-      <div className="relative max-w-3xl bg-[#111827]/50 backdrop-blur-md 
-      rounded-2xl shadow-2xl border border-[#1f2937] 
+      <div className="relative max-w-3xl 
       p-6 md:p-8 text-white">
 
         <form
           ref={form}
           onSubmit={handleSendMail}
-          className="flex flex-col gap-5"
+          className="flex flex-col gap-4"
         >
 
           <input
