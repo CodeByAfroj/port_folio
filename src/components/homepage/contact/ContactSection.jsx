@@ -90,9 +90,7 @@ function ContactSection() {
 
           </div>
 
-          {/* Social Icons */}
           <div className="mt-10 flex items-center gap-6">
-
             <a
               href={contactsData.github}
               target="_blank"

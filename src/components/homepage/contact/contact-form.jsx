@@ -46,10 +46,10 @@ function ContactForm() {
       setIsLoading(true);
 
       await emailjs.sendForm(
-        "service_72innvp",        // ✅ your service ID
-        "template_ky4sprs",       // ✅ your template ID
+        "service_72innvp",       
+        "template_ky4sprs",       
         form.current,
-        "AzJoOdr0Op4yVhRHu"     // 🔥 regenerate and paste here
+        "AzJoOdr0Op4yVhRHu"    
       );
 
       toast.success("Message sent successfully!");
@@ -70,7 +70,7 @@ function ContactForm() {
     
     <GlowCard identifier="contact-card">
 
-      <div className="relative w-full p-6 lg:p-10 text-white">
+      <div className="relative w-full p-1 lg:p-10 text-white">
 
         <form
           ref={form}
