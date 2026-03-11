@@ -8,7 +8,7 @@ import GlowCard from "../../helper/glow-card";
 import HoverOnCards from "../../helper/HoverOnCards";
 
 function Education() {
-  
+
 
   return (
     <div id="education" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
@@ -37,19 +37,21 @@ function Education() {
 
       <div className="py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+
           <div className="flex justify-center items-start">
             <div className="w-3/4 h-3/4">
               <AnimationLottie animationPath={lottieFile} />
             </div>
           </div>
+
           <div>
             <div className="flex flex-col gap-6 ">
               {
                 educations.map(education => (
-                  <HoverOnCards key={education.id}   className="" color="rgba(255,0,150,0.8)">
-                  <GlowCard   identifier={`education-${education.id}`}>
-                
-                       
+                  <HoverOnCards key={education.id} className="" color="rgba(255,0,150,0.8)">
+                    <GlowCard identifier={`education-${education.id}`}>
+
+
                       <img
                         src="/blur-23.svg"
                         alt="Hero"
@@ -73,13 +75,14 @@ function Education() {
                           <p className="text-sm sm:text-base">{education.institution}</p>
                         </div>
                       </div>
-                  
-                  </GlowCard>
-             </HoverOnCards>
+
+                    </GlowCard>
+                  </HoverOnCards>
                 ))
               }
             </div>
           </div>
+          
         </div>
       </div>
     </div>
