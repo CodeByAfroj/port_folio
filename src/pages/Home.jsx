@@ -13,25 +13,24 @@ import Skills from "../components/homepage/skills/Skills";
 function Home() {
 
   return (
-      
-   <>
-  
-    <Navbar/>
-    <ScrollToTop/>
-   
-         <div className="px-2">
-      <HeroSection />
-      <AboutSection />
-      <Experience />
-      
-         <Skills/>  
-      <Projects />
-      <Education />
-      <ContactSection />
-     
-    </div>
-    <Footer/>
-   </>
+
+    <>
+
+      <Navbar />
+      <ScrollToTop />
+
+      <div className="px-2">
+        <HeroSection />
+        <AboutSection />
+        <Experience />
+        <Skills />
+        <Projects />
+        <Education />
+        <ContactSection />
+
+      </div>
+      <Footer />
+    </>
   );
 }
 

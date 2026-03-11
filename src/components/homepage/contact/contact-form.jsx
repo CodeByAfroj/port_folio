@@ -64,14 +64,13 @@ function ContactForm() {
   };
 
   return (
-<div className="mx-10">
+<div className="relative z-50">
 
   <HoverOnCards color="rgba(255,0,150,0.8)">
     
     <GlowCard identifier="contact-card">
 
-      <div className="relative max-w-3xl 
-      p-6 md:p-8 text-white">
+      <div className="relative w-full p-6 lg:p-10 text-white">
 
         <form
           ref={form}
