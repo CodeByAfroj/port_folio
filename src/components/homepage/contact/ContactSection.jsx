@@ -9,108 +9,114 @@ import ContactForm from './contact-form';
 
 function ContactSection() {
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
+    <section id="contact" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden">
 
-      {/* 🔥 Animated Gradient Background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0f172a] to-black"></div>
 
-      <div className="absolute top-0 left-0 w-72 h-72 bg-[#16f2b3]/20 blur-3xl rounded-full animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-pink-500/20 blur-3xl rounded-full animate-pulse"></div>
+      <div className="absolute top-0 left-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#16f2b3]/10 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-pink-500/10 blur-3xl rounded-full"></div>
 
-      {/* Content */}
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
 
         {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             Let’s Build Something
           </h2>
-          <p className="text-gray-400 mt-4 text-lg">
+          <p className="text-gray-400 mt-3 text-sm sm:text-base">
             Choose your way to connect — I’ll respond fast ⚡
           </p>
         </div>
 
-        {/* Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12">
 
-          {/* LEFT — CONTACT OPTIONS */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* LEFT */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-            {/* Email Card */}
-            <a
-              href={`mailto:${contactsData.email}`}
-              className="group p-6 rounded-2xl bg-white/5 border border-white/10 
-                         hover:border-[#16f2b3] hover:scale-[1.03] 
-                         transition duration-300 backdrop-blur-xl"
-            >
-              <MdAlternateEmail size={40}
-                className="mb-4 text-[#16f2b3] group-hover:scale-110 transition" />
-              <h3 className="text-white text-lg font-semibold">Email Me</h3>
-              <p className="text-gray-400 text-sm break-all">
-                {contactsData.email}
-              </p>
-            </a>
+            {/* CARD */}
+            {[{
+              icon: <MdAlternateEmail size={28} />,
+              title: "Email Me",
+              value: contactsData.email,
+              link: `mailto:${contactsData.email}`
+            },{
+              icon: <IoMdCall size={28} />,
+              title: "Call Me",
+              value: contactsData.phone,
+              link: `tel:${contactsData.phone}`
+            }].map((item, i) => (
+              <a
+                key={i}
+                href={item.link}
+                className="
+                group relative p-4 sm:p-5 rounded-xl sm:rounded-2xl 
+                bg-white/5 border border-white/10 
+                transition-all duration-300 ease-out backdrop-blur-xl
+                hover:-translate-y-1 hover:border-[#16f2b3]/60
+                overflow-hidden
+                "
+              >
+                {/* glow sweep */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 
+                bg-gradient-to-r from-transparent via-[#16f2b3]/10 to-transparent"></div>
 
-            {/* Call Card */}
-            <a
-              href={`tel:${contactsData.phone}`}
-              className="group p-6 rounded-2xl bg-white/5 border border-white/10 
-                         hover:border-[#16f2b3] hover:scale-[1.03] 
-                         transition duration-300 backdrop-blur-xl"
-            >
-              <IoMdCall size={40}
-                className="mb-4 text-[#16f2b3] group-hover:scale-110 transition" />
-              <h3 className="text-white text-lg font-semibold">Call Me</h3>
-              <p className="text-gray-400 text-sm">
-                {contactsData.phone}
-              </p>
-            </a>
+                <div className="relative z-10">
+                  <div className="mb-3 text-[#16f2b3] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    {item.icon}
+                  </div>
+
+                  <h3 className="text-white text-sm sm:text-base font-semibold transition group-hover:text-[#16f2b3]">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-400 text-xs mt-1 break-all">
+                    {item.value}
+                  </p>
+                </div>
+              </a>
+            ))}
 
             {/* Location */}
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
-              <CiLocationOn size={40} className="mb-4 text-[#16f2b3]" />
-              <h3 className="text-white text-lg font-semibold">Location</h3>
-              <p className="text-gray-400 text-sm">
-                {contactsData.address}
-              </p>
+            <div className="group relative p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:-translate-y-1 hover:border-[#16f2b3]/60 transition overflow-hidden">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-transparent via-[#16f2b3]/10 to-transparent"></div>
+
+              <div className="relative z-10">
+                <CiLocationOn size={28} className="mb-3 text-[#16f2b3] group-hover:scale-110 transition" />
+                <h3 className="text-white text-sm sm:text-base font-semibold group-hover:text-[#16f2b3]">Location</h3>
+                <p className="text-gray-400 text-xs mt-1">{contactsData.address}</p>
+              </div>
             </div>
 
             {/* Social */}
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
-              <h3 className="text-white text-lg font-semibold mb-4">
-                Socials
-              </h3>
+            <div className="group relative p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 hover:-translate-y-1 hover:border-[#16f2b3]/60 transition overflow-hidden">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-transparent via-[#16f2b3]/10 to-transparent"></div>
 
-              <div className="flex gap-4">
-                <a href={contactsData.github} target="_blank">
-                  <IoLogoGithub className="text-2xl text-gray-300 hover:text-[#16f2b3] transition" />
-                </a>
-                <a href={contactsData.linkedIn} target="_blank">
-                  <BiLogoLinkedin className="text-2xl text-gray-300 hover:text-[#16f2b3] transition" />
-                </a>
-                <a href={contactsData.twitter} target="_blank">
-                  <FaXTwitter className="text-2xl text-gray-300 hover:text-[#16f2b3] transition" />
-                </a>
+              <div className="relative z-10">
+                <h3 className="text-white text-sm sm:text-base font-semibold mb-3 group-hover:text-[#16f2b3]">Socials</h3>
+                <div className="flex gap-4">
+                  <IoLogoGithub className="text-lg text-gray-300 hover:text-[#16f2b3]" />
+                  <BiLogoLinkedin className="text-lg text-gray-300 hover:text-[#16f2b3]" />
+                  <FaXTwitter className="text-lg text-gray-300 hover:text-[#16f2b3]" />
+                </div>
               </div>
             </div>
 
           </div>
 
-          {/* RIGHT — FORM EXPERIENCE */}
-          <div className="relative">
+          {/* RIGHT */}
+          <div>
+            <div className="p-4 sm:p-6 lg:p-8 rounded-2xl 
+                            bg-gradient-to-br from-white/5 to-white/0 
+                            border border-white/10 backdrop-blur-xl">
 
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 
-                            border border-white/10 backdrop-blur-xl
-                            shadow-[0_0_40px_rgba(22,242,179,0.1)]">
-
-              <h3 className="text-2xl text-white font-semibold mb-6">
+              <h3 className="text-lg sm:text-xl lg:text-2xl text-white font-semibold mb-5">
                 Send a Message
               </h3>
 
               <ContactForm />
 
             </div>
-
           </div>
 
         </div>

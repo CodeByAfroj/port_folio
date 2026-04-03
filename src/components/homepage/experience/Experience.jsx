@@ -7,80 +7,94 @@ import HoverOnCards from "../../helper/HoverOnCards";
 
 function Experience() {
   return (
-    <div id="experience" className="relative z-50 border-t max-sm:mx-2 mx-12 my-12 lg:my-24 border-[#25213b]">
-      
-      <img
-        src="/section.svg"
-        alt="Hero"
-        width={1572}
-        height={795}
-        className="absolute top-0 -z-10"
-      />
+    <section id="experience" className="relative py-24 overflow-hidden">
 
-      {/* Section Heading */}
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex items-center">
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          <span className="bg-[#1a1443] text-white p-2 px-5 text-xl rounded-md">
-            Experiences
+      {/* 🔥 Background Glow */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-400/20 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-violet-500/20 blur-3xl rounded-full"></div>
+
+      {/* Title */}
+      <div className="flex justify-center mb-20 px-6">
+        <div className="flex items-center w-full max-w-xl">
+          <div className="flex-grow h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40"></div>
+          <span className="mx-4 text-white text-3xl font-semibold">
+            Experience
           </span>
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+          <div className="flex-grow h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40"></div>
         </div>
       </div>
 
-      {/* Main Section */}
-      <div className="py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          
-          {/* Lottie */}
-          <div className="flex justify-center items-start">
-            <div className="w-full h-full">
-              <AnimationLottie animationPath={experience} />
-            </div>
+      {/* Layout */}
+      <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+        {/* LEFT - Timeline */}
+        <div className="relative">
+
+          {/* Vertical Line */}
+          <div className="absolute left-4 top-0 w-[2px] h-full 
+                          bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-40">
           </div>
 
-          {/* Cards */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-12">
+
             {experiences.map((exp) => (
-              <HoverOnCards key={exp.id} color="rgba(0,200,255,0.7)">
-                <GlowCard identifier={`experience-${exp.id}`}>
-                  <div className="relative p-4 overflow-hidden rounded-xl">
+              <div key={exp.id} className="relative flex items-start gap-6 group">
 
-                    <img
-                      src="/blur-23.svg"
-                      alt="blur"
-                      className="absolute bottom-0 left-0 w-full opacity-80 pointer-events-none"
-                    />
-
-                    <div className="flex justify-center mb-2">
-                      <p className="text-xs sm:text-sm text-[#16f2b3]">
-                        {exp.duration}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-x-6">
-                      <div className="text-violet-500 transition-all duration-300 hover:scale-125">
-                        <BsPersonWorkspace size={36} />
-                      </div>
-
-                      <div>
-                        <p className="text-base sm:text-xl mb-1 font-medium uppercase">
-                          {exp.title}
-                        </p>
-                        <p className="text-sm sm:text-base">{exp.company}</p>
-                      </div>
-                    </div>
-
+                {/* Node */}
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-full bg-cyan-400 
+                                  flex items-center justify-center 
+                                  shadow-[0_0_20px_#22d3ee]
+                                  group-hover:scale-110 transition">
+                    <BsPersonWorkspace className="text-black" />
                   </div>
-                </GlowCard>
-              </HoverOnCards>
+                </div>
+
+                {/* Card */}
+                <div className="flex-1">
+                  <HoverOnCards color="rgba(0,200,255,0.7)">
+                    <GlowCard identifier={`experience-${exp.id}`}>
+
+                      <div className="p-5 transition duration-300 hover:-translate-y-1">
+
+                        {/* Duration Tag */}
+                        <span className="text-xs px-3 py-1 rounded-full 
+                                         bg-cyan-400/10 text-cyan-400 
+                                         border border-cyan-400/20">
+                          {exp.duration}
+                        </span>
+
+                        {/* Content */}
+                        <div className="mt-3">
+                          <p className="text-lg font-semibold text-white uppercase">
+                            {exp.title}
+                          </p>
+                          <p className="text-gray-400 text-sm mt-1">
+                            {exp.company}
+                          </p>
+                        </div>
+
+                      </div>
+
+                    </GlowCard>
+                  </HoverOnCards>
+                </div>
+
+              </div>
             ))}
+
           </div>
-
         </div>
-      </div>
 
-    </div>
+        {/* RIGHT - Animation */}
+        <div className="flex justify-center">
+          <div className="w-[80%] hover:scale-105 transition duration-500">
+            <AnimationLottie animationPath={experience} />
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }
 

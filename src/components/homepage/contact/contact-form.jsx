@@ -39,24 +39,22 @@ function ContactForm() {
 
   const handleSendMail = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     try {
       setIsLoading(true);
 
       await emailjs.sendForm(
-        "service_72innvp",       
-        "template_ky4sprs",       
+        "service_72innvp",
+        "template_ky4sprs",
         form.current,
-        "AzJoOdr0Op4yVhRHu"    
+        "AzJoOdr0Op4yVhRHu"
       );
 
       toast.success("Message sent successfully!");
       form.current.reset();
 
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("Failed to send message!");
     } finally {
       setIsLoading(false);
@@ -64,84 +62,83 @@ function ContactForm() {
   };
 
   return (
-<div className="relative z-50">
+    <div className="relative z-50">
 
-  <HoverOnCards color="rgba(255,0,150,0.8)">
-    
-    <GlowCard identifier="contact-card">
+      <HoverOnCards color="rgba(255,0,150,0.8)">
+        <GlowCard identifier="contact-card">
 
-      <div className="relative w-full p-1 lg:p-10 text-white">
+          <div className="w-full p-4 sm:p-6 lg:p-10 text-white">
 
-        <form
-          ref={form}
-          onSubmit={handleSendMail}
-          className="flex flex-col gap-4"
-        >
+            <form
+              ref={form}
+              onSubmit={handleSendMail}
+              className="flex flex-col gap-4 w-full pb-16 sm:pb-0"
+            >
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className="bg-[#1f2937] border border-[#374151] 
-            focus:border-pink-500 outline-none 
-            px-4 py-3 rounded-lg transition-all"
-          />
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                className="w-full bg-[#1f2937] border border-[#374151] 
+                focus:border-pink-500 outline-none 
+                px-3 sm:px-4 py-3 rounded-lg text-sm sm:text-base"
+              />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="bg-[#1f2937] border border-[#374151] 
-            focus:border-pink-500 outline-none 
-            px-4 py-3 rounded-lg transition-all"
-          />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                className="w-full bg-[#1f2937] border border-[#374151] 
+                focus:border-pink-500 outline-none 
+                px-3 sm:px-4 py-3 rounded-lg text-sm sm:text-base"
+              />
 
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="4"
-            className="bg-[#1f2937] border border-[#374151] 
-            focus:border-pink-500 outline-none 
-            px-4 py-3 rounded-lg transition-all"
-          />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows="4"
+                className="w-full min-h-[120px] sm:min-h-[140px]
+                bg-[#1f2937] border border-[#374151] 
+                focus:border-pink-500 outline-none 
+                px-3 sm:px-4 py-3 rounded-lg text-sm sm:text-base resize-none"
+              />
 
-          {error.required && (
-            <p className="text-red-400 text-sm text-center">
-              All fields are required!
-            </p>
-          )}
+              {error.required && (
+                <p className="text-red-400 text-xs sm:text-sm text-center">
+                  All fields are required!
+                </p>
+              )}
 
-          {error.email && (
-            <p className="text-red-400 text-sm text-center">
-              Invalid email address!
-            </p>
-          )}
+              {error.email && (
+                <p className="text-red-400 text-xs sm:text-sm text-center">
+                  Invalid email address!
+                </p>
+              )}
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="flex items-center justify-center gap-2 
-            bg-gradient-to-r from-pink-500 to-violet-600 
-            px-6 py-3 rounded-full font-semibold
-            transition-all hover:scale-105 active:scale-95"
-          >
-            {isLoading ? "Sending..." : (
-              <>
-                Send Message
-                <TbMailForward size={20} />
-              </>
-            )}
-          </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full flex items-center justify-center gap-2 
+                bg-gradient-to-r from-pink-500 to-violet-600 
+                px-6 py-3 rounded-full font-semibold
+                text-sm sm:text-base active:scale-95"
+              >
+                {isLoading ? "Sending..." : (
+                  <>
+                    Send Message
+                    <TbMailForward size={18} />
+                  </>
+                )}
+              </button>
 
-        </form>
+            </form>
 
-      </div>
+          </div>
 
-    </GlowCard>
+        </GlowCard>
+      </HoverOnCards>
 
-  </HoverOnCards>
-
-</div>
+    </div>
   );
 }
 
