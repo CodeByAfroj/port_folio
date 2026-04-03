@@ -586,7 +586,7 @@ function HeroSection() {
       />
 
       {/* ✅ container added (NO structure change, just wrapper) */}
-      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-10">
 
@@ -649,7 +649,7 @@ function HeroSection() {
               {/* code block */}
               <div className="border-t-[2px] border-indigo-900 px-3 sm:px-4 py-4 sm:py-6 overflow-x-auto">
 
-                <code className="font-mono text-[10px] sm:text-xs md:text-sm lg:text-sm xl:text-base whitespace-nowrap">
+                <code className="font-mono text-[10px] sm:text-xs md:text-sm lg:text-sm xl:text-base break-words">
 
             
                 <div className={`${finished ? "opacity-100" : currentLine === 0 ? "text-[#16f2b3]" : "opacity-40"}`}>

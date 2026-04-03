@@ -358,16 +358,7 @@ function AboutSection() {
 
             <div className="mx-auto lg:mx-0 max-w-md lg:max-w-xl">
 
-              {/* LABEL */}
-              <p
-                className={`
-                  text-sm text-gray-500 mb-3 font-mono
-                  transition-all duration-700
-                  ${showLabel ? "opacity-100 blur-0" : "opacity-0 blur-md"}
-                `}
-              >
-                Generating profile...
-              </p>
+             
 
               {/* TEXT */}
               <p className="text-gray-200 text-sm lg:text-base xl:text-lg leading-relaxed font-mono">
