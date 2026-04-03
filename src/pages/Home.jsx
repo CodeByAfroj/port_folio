@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/helper/scroll-to-top";
 import Skills from "../components/homepage/skills/Skills";
 
+
 function Home() {
 
   return (
