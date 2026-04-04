@@ -7,14 +7,7 @@ import { useEffect, useState } from "react";
 
 function Footer() {
   const { stars, forks } = useGithubRepoStats("CodeByAfroj", "port_folio");
-   const [views, setViews] = useState("...");
-
-  useEffect(() => {
-    fetch("/api/views")
-      .then((res) => res.json())
-      .then((data) => setViews(data.views))
-      .catch(() => setViews("0"));
-  }, []);
+  
 
   return (
     <div className="relative border-t bg-[#0d1224] border-[#353951] text-white">
@@ -40,16 +33,7 @@ function Footer() {
 
           <div className="flex items-center gap-5">
 
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
-            >
-              <IoEye />
-              <span className="flex items-center gap-1">
-                Views {views}
-              </span>
-            </a>
+        
             <a
               target="_blank"
               rel="noopener noreferrer"
