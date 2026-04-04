@@ -767,7 +767,7 @@ function HeroSection() {
                 {/* RESULT */}
                 {finished && (
                   <div className="mt-4 text-green-400 font-bold animate-pulse">
-                    → hireable: true ✅
+                    → hireable: true 
                   </div>
                 )}
 

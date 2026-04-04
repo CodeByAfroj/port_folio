@@ -213,26 +213,244 @@
 // @flow strict
 // @flow strict
 
+// import { personalData } from "../../../utils/data/personal-data";
+// import { useEffect, useState, useRef } from "react";
+
+// function AboutSection() {
+
+//   // VISIBILITY
+//   const [isVisible, setIsVisible] = useState(false);
+//   const sectionRef = useRef(null);
+
+//   // TEXT AI
+//   const [displayText, setDisplayText] = useState("");
+//   const [index, setIndex] = useState(0);
+//   const [start, setStart] = useState(false);
+
+//   // LABEL
+//   const [showLabel, setShowLabel] = useState(false);
+
+//   // IMAGE GENERATION
+//   const [imgStep, setImgStep] = useState(0);
+//   const [showImage, setShowImage] = useState(false);
+
+//   const fullText = personalData.description;
+
+//   const steps = [
+//     "Generating image...",
+//     "Rendering layers...",
+//     "Enhancing details...",
+//     "Finalizing..."
+//   ];
+
+//   // 👁 VISIBILITY
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => setIsVisible(entry.isIntersecting),
+//       { threshold: 0.4 }
+//     );
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current);
+//     }
+
+//     return () => observer.disconnect();
+//   }, []);
+
+//   // 🔁 RESET
+//   useEffect(() => {
+//     if (!isVisible) {
+//       setDisplayText("");
+//       setIndex(0);
+//       setStart(false);
+//       setShowImage(false);
+//       setImgStep(0);
+//       setShowLabel(false);
+//     }
+//   }, [isVisible]);
+
+//   // 🚀 START
+//   useEffect(() => {
+//     if (!isVisible) return;
+
+//     const delay = setTimeout(() => {
+//       setStart(true);
+//       setShowLabel(true);
+//     }, 800);
+
+//     return () => clearTimeout(delay);
+//   }, [isVisible]);
+
+//   // ✍️ TEXT TYPING
+//   useEffect(() => {
+//     if (!start || index >= fullText.length) return;
+
+//     const timeout = setTimeout(() => {
+//       setDisplayText((prev) => prev + fullText[index]);
+//       setIndex((prev) => prev + 1);
+//     }, 20 + Math.random() * 30);
+
+//     return () => clearTimeout(timeout);
+//   }, [index, fullText, start]);
+
+//   // 🖼 IMAGE GENERATION
+//   useEffect(() => {
+//     if (!start || !isVisible) return;
+
+//     let i = 0;
+
+//     const interval = setInterval(() => {
+//       setImgStep(i);
+//       i++;
+
+//       if (i === steps.length) {
+//         clearInterval(interval);
+//         setTimeout(() => setShowImage(true), 500);
+//       }
+//     }, 700);
+
+//     return () => clearInterval(interval);
+//   }, [start, isVisible]);
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       id="about"
+//       className="relative z-50 border-t border-[#25213b] py-12 lg:py-24"
+//     >
+//       {/* BACKGROUND */}
+//       <img
+//         src="/section.svg"
+//         alt="Hero"
+//         className="absolute top-0 -z-10 w-full"
+//       />
+
+//       {/* CONTAINER */}
+//       <div className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+
+//         {/* TOP LINE */}
+//         <div className="flex justify-center -translate-y-[1px]">
+//           <div className="w-3/4">
+//             <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+//           </div>
+//         </div>
+
+//         {/* TITLE */}
+//         <div className="flex justify-center my-10 lg:py-8">
+//           <div className="flex items-center">
+//             <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+//             <span className="bg-[#1a1443] text-white px-3 py-1 text-xl rounded-md">
+//               About Me
+//             </span>
+//             <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+//           </div>
+//         </div>
+
+//         {/* CONTENT */}
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+//           {/* LEFT */}
+//           <div className="order-2 lg:order-1">
+
+//             <p className="font-medium mb-4 text-[#16f2b3] text-xl uppercase">
+//               Who I am?
+//             </p>
+
+//             <div className="mx-auto lg:mx-0 max-w-md lg:max-w-xl">
+
+             
+
+//               {/* TEXT */}
+//               <p className="text-gray-200 text-sm lg:text-base xl:text-lg leading-relaxed font-mono">
+
+//                 {displayText}
+
+//                 {start && (
+//                   <span className="inline-block w-[8px] h-[18px] ml-1 bg-[#16f2b3] animate-pulse"></span>
+//                 )}
+
+//               </p>
+
+//             </div>
+//           </div>
+
+//           {/* RIGHT */}
+//           <div className="flex justify-center order-1 lg:order-2 relative">
+
+//             {/* GLOW */}
+//             <div className="absolute w-72 h-72 bg-violet-600/20 blur-3xl rounded-full"></div>
+//             <div className="absolute w-60 h-60 bg-pink-500/20 blur-2xl rounded-full"></div>
+
+//             <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] lg:w-[300px] lg:h-[300px] flex items-center justify-center">
+
+//               {/* GENERATION TEXT */}
+//               {!showImage && (
+//                 <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-sm text-gray-400 space-y-2">
+
+//                   {steps.slice(0, imgStep + 1).map((text, i) => (
+//                     <p
+//                       key={i}
+//                       className={`transition-all duration-300 ${
+//                         i === imgStep ? "text-[#16f2b3]" : "opacity-40"
+//                       }`}
+//                     >
+//                       {text}
+//                     </p>
+//                   ))}
+
+//                   <span className="text-[#16f2b3] animate-pulse">|</span>
+//                 </div>
+//               )}
+
+//               {/* IMAGE */}
+//               <img
+//                 src={personalData.profile}
+//                 alt="Afroj Mulani"
+//                 className={`
+//                   w-full max-sm:h-full h-90 object-cover rounded-lg absolute
+//                   transition-all duration-700 ease-out
+//                   ${
+//                     showImage
+//                       ? "opacity-100 scale-100 blur-0 grayscale hover:grayscale-0 hover:scale-110"
+//                       : "opacity-0 scale-95 blur-xl"
+//                   }
+//                 `}
+//               />
+
+//             </div>
+//           </div>
+
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// export default AboutSection;
+
+
+
+// @flow strict
+
 import { personalData } from "../../../utils/data/personal-data";
 import { useEffect, useState, useRef } from "react";
 
 function AboutSection() {
 
-  // VISIBILITY
+  // 👁 VISIBILITY (run only once)
   const [isVisible, setIsVisible] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
   const sectionRef = useRef(null);
 
-  // TEXT AI
+  // ✍️ TEXT AI
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
   const [start, setStart] = useState(false);
 
-  // LABEL
-  const [showLabel, setShowLabel] = useState(false);
-
-  // IMAGE GENERATION
+  // 🖼 IMAGE
   const [imgStep, setImgStep] = useState(0);
   const [showImage, setShowImage] = useState(false);
+  const [revealStage, setRevealStage] = useState(0);
 
   const fullText = personalData.description;
 
@@ -243,10 +461,16 @@ function AboutSection() {
     "Finalizing..."
   ];
 
-  // 👁 VISIBILITY
+  // 👁 INTERSECTION OBSERVER (ONLY ONCE)
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting && !hasPlayed) {
+          setIsVisible(true);
+          setHasPlayed(true);
+          observer.disconnect(); // 🔥 stop forever
+        }
+      },
       { threshold: 0.4 }
     );
 
@@ -255,19 +479,7 @@ function AboutSection() {
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  // 🔁 RESET
-  useEffect(() => {
-    if (!isVisible) {
-      setDisplayText("");
-      setIndex(0);
-      setStart(false);
-      setShowImage(false);
-      setImgStep(0);
-      setShowLabel(false);
-    }
-  }, [isVisible]);
+  }, [hasPlayed]);
 
   // 🚀 START
   useEffect(() => {
@@ -275,13 +487,12 @@ function AboutSection() {
 
     const delay = setTimeout(() => {
       setStart(true);
-      setShowLabel(true);
     }, 800);
 
     return () => clearTimeout(delay);
   }, [isVisible]);
 
-  // ✍️ TEXT TYPING
+  // ✍️ TYPING EFFECT
   useEffect(() => {
     if (!start || index >= fullText.length) return;
 
@@ -293,9 +504,9 @@ function AboutSection() {
     return () => clearTimeout(timeout);
   }, [index, fullText, start]);
 
-  // 🖼 IMAGE GENERATION
+  // 🖼 IMAGE GENERATION STEPS
   useEffect(() => {
-    if (!start || !isVisible) return;
+    if (!start) return;
 
     let i = 0;
 
@@ -305,12 +516,30 @@ function AboutSection() {
 
       if (i === steps.length) {
         clearInterval(interval);
-        setTimeout(() => setShowImage(true), 500);
+
+        setTimeout(() => {
+          setShowImage(true);
+        }, 400);
       }
     }, 700);
 
     return () => clearInterval(interval);
-  }, [start, isVisible]);
+  }, [start]);
+
+  // ✨ SMOOTH REVEAL (ChatGPT style)
+  useEffect(() => {
+    if (!showImage) return;
+
+    setRevealStage(1);
+
+    const t1 = setTimeout(() => setRevealStage(2), 150);
+    const t2 = setTimeout(() => setRevealStage(3), 350);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [showImage]);
 
   return (
     <section
@@ -325,15 +554,7 @@ function AboutSection() {
         className="absolute top-0 -z-10 w-full"
       />
 
-      {/* CONTAINER */}
       <div className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
-
-        {/* TOP LINE */}
-        <div className="flex justify-center -translate-y-[1px]">
-          <div className="w-3/4">
-            <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
-          </div>
-        </div>
 
         {/* TITLE */}
         <div className="flex justify-center my-10 lg:py-8">
@@ -346,44 +567,33 @@ function AboutSection() {
           </div>
         </div>
 
-        {/* CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* LEFT */}
-          <div className="order-2 lg:order-1">
+          <div>
 
             <p className="font-medium mb-4 text-[#16f2b3] text-xl uppercase">
               Who I am?
             </p>
 
-            <div className="mx-auto lg:mx-0 max-w-md lg:max-w-xl">
-
-             
-
-              {/* TEXT */}
-              <p className="text-gray-200 text-sm lg:text-base xl:text-lg leading-relaxed font-mono">
-
-                {displayText}
-
-                {start && (
-                  <span className="inline-block w-[8px] h-[18px] ml-1 bg-[#16f2b3] animate-pulse"></span>
-                )}
-
-              </p>
-
-            </div>
+            <p className="text-gray-200 text-sm lg:text-base xl:text-lg leading-relaxed font-mono">
+              {displayText}
+              {start && (
+                <span className="inline-block w-[8px] h-[18px] ml-1 bg-[#16f2b3] animate-pulse"></span>
+              )}
+            </p>
           </div>
 
           {/* RIGHT */}
-          <div className="flex justify-center order-1 lg:order-2 relative">
+          <div className="flex justify-center relative">
 
             {/* GLOW */}
             <div className="absolute w-72 h-72 bg-violet-600/20 blur-3xl rounded-full"></div>
             <div className="absolute w-60 h-60 bg-pink-500/20 blur-2xl rounded-full"></div>
 
-            <div className="relative w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] lg:w-[300px] lg:h-[300px] flex items-center justify-center">
+            <div className="relative w-[260px] h-[260px] lg:w-[300px] lg:h-[300px] flex items-center justify-center">
 
-              {/* GENERATION TEXT */}
+              {/* 🧠 GENERATION TEXT */}
               {!showImage && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-sm text-gray-400 space-y-2">
 
@@ -399,21 +609,31 @@ function AboutSection() {
                   ))}
 
                   <span className="text-[#16f2b3] animate-pulse">|</span>
+
+                  {/* shimmer */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse rounded-lg" />
                 </div>
               )}
 
-              {/* IMAGE */}
+              {/* 🖼 IMAGE */}
               <img
                 src={personalData.profile}
-                alt="Afroj Mulani"
+                alt="profile"
                 className={`
-                  w-full max-sm:h-full h-90 object-cover rounded-lg absolute
-                  transition-all duration-700 ease-out
+                  w-full h-100 object-cover rounded-lg absolute
+                  transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+
                   ${
-                    showImage
-                      ? "opacity-100 scale-100 blur-0 grayscale hover:grayscale-0 hover:scale-110"
-                      : "opacity-0 scale-95 blur-xl"
+                    !showImage
+                      ? "opacity-0 scale-110 blur-2xl"
+                      : revealStage === 1
+                      ? "opacity-40 scale-105 blur-xl brightness-75"
+                      : revealStage === 2
+                      ? "opacity-70 scale-102 blur-md brightness-90"
+                      : "opacity-100 scale-100 blur-0 brightness-100"
                   }
+
+                  grayscale hover:grayscale-0 hover:scale-110
                 `}
               />
 

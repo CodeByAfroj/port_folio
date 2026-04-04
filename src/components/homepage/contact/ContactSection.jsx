@@ -6,13 +6,19 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import ContactForm from './contact-form';
-
+import { personalData } from '../../../utils/data/personal-data';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { SiLeetcode } from 'react-icons/si';
 function ContactSection() {
   return (
-    <section id="contact" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden">
+    <section id="contact" className="relative py-14 sm:py-16 lg:py-24 overflow-hidden rounded-2xl">
 
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0f172a] to-black"></div>
+      <img
+        src="/section.svg"
+        alt="section"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] max-w-full opacity-40 -z-10 pointer-events-none"
+      />
 
       <div className="absolute top-0 left-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#16f2b3]/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-pink-500/10 blur-3xl rounded-full"></div>
@@ -40,7 +46,7 @@ function ContactSection() {
               title: "Email Me",
               value: contactsData.email,
               link: `mailto:${contactsData.email}`
-            },{
+            }, {
               icon: <IoMdCall size={28} />,
               title: "Call Me",
               value: contactsData.phone,
@@ -94,10 +100,16 @@ function ContactSection() {
 
               <div className="relative z-10">
                 <h3 className="text-white text-sm sm:text-base font-semibold mb-3 group-hover:text-[#16f2b3]">Socials</h3>
-                <div className="flex gap-4">
-                  <IoLogoGithub className="text-lg text-gray-300 hover:text-[#16f2b3]" />
-                  <BiLogoLinkedin className="text-lg text-gray-300 hover:text-[#16f2b3]" />
-                  <FaXTwitter className="text-lg text-gray-300 hover:text-[#16f2b3]" />
+                <div className="my-8 sm:my-10 md:my-12 flex items-center gap-4 sm:gap-5">
+                  <a href={personalData.github} target="_blank" rel="noreferrer" className="text-white group-hover:text-[#16f2b3] hover:scale-125 transition">
+                    <BsGithub size={40} className="sm:w-[28px] sm:h-[28px] md:w-[30px] md:h-[30px]" />
+                  </a>
+                  <a href={personalData.linkedIn} target="_blank" rel="noreferrer" className="text-white group-hover:text-[#16f2b3] hover:scale-125 transition">
+                    <BsLinkedin size={24} className="sm:w-[28px] sm:h-[28px] md:w-[30px] md:h-[30px]" />
+                  </a>
+                  <a href={personalData.twitter} target="_blank" rel="noreferrer" className="text-white group-hover:text-[#16f2b3] hover:scale-125 transition">
+                    <FaXTwitter size={24} className="sm:w-[28px] sm:h-[28px] md:w-[30px] md:h-[30px]" />
+                  </a>
                 </div>
               </div>
             </div>
