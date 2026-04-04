@@ -13,7 +13,6 @@
     "@emailjs/browser": "^4.4.1",
     "@splinetool/react-spline": "^4.0.0",
     "@tailwindcss/vite": "^4.1.4",
-    "@vercel/kv": "^3.0.0",
     "axios": "^1.13.1",
     "framer-motion": "^12.38.0",
     "lottie-react": "^2.4.1",
