@@ -525,6 +525,7 @@ import HoverOnCards from "../../helper/HoverOnCards";
 import { FaXTwitter } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
+
 function HeroSection() {
   const smoothScroll = () => {
     const element = document.querySelector("#contact");
@@ -576,7 +577,7 @@ function HeroSection() {
         : "opacity-40";
 
   return (
-    <section className="relative mt-12 sm:mt-14 lg:mt-16 flex flex-col items-center justify-between py-6 sm:py-8 lg:py-12 overflow-hidden">
+    <section id="hero" className="relative mt-12 sm:mt-14 lg:mt-16 flex flex-col items-center justify-between py-6 sm:py-8 lg:py-12 overflow-hidden">
 
       {/* ✅ responsive background */}
       <img
@@ -626,8 +627,12 @@ function HeroSection() {
               <a href={personalData.resume} target="_blank" rel="noreferrer" className="flex items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-white text-sm sm:text-base">
                 Download Resume <MdDownload size={16} />
               </a>
+
+           
             </div>
           </div>
+
+          
 
           {/* RIGHT CARD */}
           <HoverOnCards className="w-full h-full" color="rgba(255,0,150,0.8)">

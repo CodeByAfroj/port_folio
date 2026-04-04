@@ -1,14 +1,24 @@
+
 export const experiences = [
   {
     id: 1,
-    title: "Full-Stack Developer (Learning & Project Development)",
-    company: "Actively improving skills and building real-world applications",
-    duration: "(2024 – Present)",
+    title: "Frontend Developer Intern",
+    company: "Springer Capital LLC",
+    duration: "Dec 2025 – Mar 2026",
   },
+
   {
     id: 2,
-    title: "Open to Work",
-    company: "Looking for internships or entry-level developer roles",
-    duration: "(Present)",
+    title: "Full-Stack Developer (Self Projects)",
+    company: "Personal Projects",
+    duration: "2024 – Present",
+
+  },
+
+  {
+    id: 3,
+    title: "Open to Opportunities",
+    company: "Seeking Internship / Entry-Level Role",
+    duration: "Present",
   }
 ];

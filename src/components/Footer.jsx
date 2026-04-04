@@ -1,11 +1,20 @@
 // @flow strict
 
 import { CgGitFork } from "react-icons/cg";
-import { IoStar } from "react-icons/io5";
+import { IoEye, IoStar } from "react-icons/io5";
 import useGithubRepoStats from "../utils/useGithub";
+import { useEffect, useState } from "react";
 
 function Footer() {
   const { stars, forks } = useGithubRepoStats("CodeByAfroj", "port_folio");
+   const [views, setViews] = useState("...");
+
+  useEffect(() => {
+    fetch("/api/views")
+      .then((res) => res.json())
+      .then((data) => setViews(data.views))
+      .catch(() => setViews("0"));
+  }, []);
 
   return (
     <div className="relative border-t bg-[#0d1224] border-[#353951] text-white">
@@ -34,6 +43,16 @@ function Footer() {
             <a
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+            >
+              <IoEye />
+              <span className="flex items-center gap-1">
+                Views {views}
+              </span>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/CodeByAfroj/port_folio"
               className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
             >
@@ -50,6 +69,7 @@ function Footer() {
               <CgGitFork />
               <span>Fork ({forks})</span>
             </a>
+
 
           </div>
 

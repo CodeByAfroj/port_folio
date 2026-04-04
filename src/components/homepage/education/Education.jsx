@@ -71,39 +71,44 @@ function Education() {
                     className="absolute bottom-0 opacity-60 w-full pointer-events-none"
                   />
 
-                  <div className="transition duration-300 hover:-translate-y-1">
+                  <div className="transition duration-300 hover:-translate-y-1 w-full max-w-xl mx-auto">
 
-                    {/* duration */}
-                    <div className="flex justify-center mt-4">
-                      <span className="text-xs px-3 py-1 rounded-full 
-                                       bg-[#16f2b3]/10 text-[#16f2b3] 
-                                       border border-[#16f2b3]/20">
-                        {education.duration}
-                      </span>
-                    </div>
+  {/* duration + percentage */}
+  <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mt-4">
+    <span className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full 
+                     bg-emerald-400/10 text-emerald-400 
+                     border border-emerald-400/20">
+      {education.duration}
+    </span>
 
-                    {/* content */}
-                    <div className="flex items-center gap-4 sm:gap-6 px-4 py-6">
+    <span className="text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full 
+                     bg-emerald-400/10 text-emerald-400 
+                     border border-emerald-400/20">
+      {education.percentage}
+    </span>
+  </div>
 
-                      {/* icon */}
-                      <div className="text-violet-400 transition duration-300 hover:scale-110">
-                        <BsPersonWorkspace size={28} className="sm:w-[32px] sm:h-[32px] md:w-[34px] md:h-[34px]" />
-                      </div>
+  {/* content */}
+  <div className="flex items-center gap-3 sm:gap-5 px-4 py-5 sm:py-6">
 
-                      {/* text */}
-                      <div>
-                        <p className="text-base sm:text-lg font-semibold text-white uppercase tracking-wide">
-                          {education.title}
-                        </p>
-                        <p className="text-xs sm:text-sm text-gray-400 mt-1">
-                          {education.institution}
-                        </p>
-                      </div>
+    {/* icon */}
+    <div className="text-violet-400 transition duration-300 hover:scale-110 shrink-0">
+      <BsPersonWorkspace className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9" />
+    </div>
 
-                    </div>
+    {/* text */}
+    <div className="min-w-0">
+      <p className="text-sm sm:text-base md:text-lg font-semibold text-white uppercase tracking-wide">
+        {education.title}
+      </p>
+      <p className="text-[11px] sm:text-sm text-gray-400 mt-1 truncate">
+        {education.institution}
+      </p>
+    </div>
 
-                  </div>
+  </div>
 
+</div>
                 </GlowCard>
               </HoverOnCards>
             ))}

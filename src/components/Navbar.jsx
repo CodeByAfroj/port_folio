@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { FiMenu, FiX } from "react-icons/fi";
 
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
   const links = [
+            { name: "HOME", to: "#hero" },
             { name: "ABOUT", to: "#about" },
             { name: "EXPERIENCE", to: "#experience" },
             { name: "SKILLS", to: "#skills" },
@@ -22,14 +24,15 @@ function Navbar() {
     <nav className=" bg-transparent fixed top-0 left-0 w-full z-70 shadow-sm backdrop-blur-lg">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link
-          to="/"
+        <HashLink
+          to={links[0].to}
+          smooth
           className="text-[#16f2b3] text-3xl font-bold tracking-wide"
           onClick={closeMenu}
         >
-          Afroj Mulani
-        </Link>
-
+         Afroj Mulani
+        </HashLink>
+         
         {/* Hamburger Icon (Mobile) */}
         <div className="md:hidden text-white text-3xl cursor-pointer transition-all duration-300">
           {isOpen ? <FiX onClick={toggleMenu} /> : <FiMenu onClick={toggleMenu} />}
@@ -59,6 +62,7 @@ function Navbar() {
         
         </ul>
       </div>
+     
     </nav>
   );
 }

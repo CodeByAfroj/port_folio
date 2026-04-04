@@ -431,23 +431,19 @@
 
 
 // @flow strict
-
+// @flow strict
 import { personalData } from "../../../utils/data/personal-data";
 import { useEffect, useState, useRef } from "react";
 
 function AboutSection() {
-
-  // 👁 VISIBILITY (run only once)
   const [isVisible, setIsVisible] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
   const sectionRef = useRef(null);
 
-  // ✍️ TEXT AI
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
   const [start, setStart] = useState(false);
 
-  // 🖼 IMAGE
   const [imgStep, setImgStep] = useState(0);
   const [showImage, setShowImage] = useState(false);
   const [revealStage, setRevealStage] = useState(0);
@@ -461,77 +457,65 @@ function AboutSection() {
     "Finalizing..."
   ];
 
-  // 👁 INTERSECTION OBSERVER (ONLY ONCE)
+  // 👁 Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasPlayed) {
           setIsVisible(true);
           setHasPlayed(true);
-          observer.disconnect(); // 🔥 stop forever
+          observer.disconnect();
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [hasPlayed]);
 
-  // 🚀 START
+  // 🚀 Start animation
   useEffect(() => {
     if (!isVisible) return;
-
-    const delay = setTimeout(() => {
-      setStart(true);
-    }, 800);
-
+    const delay = setTimeout(() => setStart(true), 600);
     return () => clearTimeout(delay);
   }, [isVisible]);
 
-  // ✍️ TYPING EFFECT
+  // ✍️ Typing effect
   useEffect(() => {
     if (!start || index >= fullText.length) return;
 
     const timeout = setTimeout(() => {
       setDisplayText((prev) => prev + fullText[index]);
       setIndex((prev) => prev + 1);
-    }, 20 + Math.random() * 30);
+    }, 20);
 
     return () => clearTimeout(timeout);
   }, [index, fullText, start]);
 
-  // 🖼 IMAGE GENERATION STEPS
+  // 🖼 Image loading steps
   useEffect(() => {
     if (!start) return;
 
     let i = 0;
-
     const interval = setInterval(() => {
       setImgStep(i);
       i++;
 
       if (i === steps.length) {
         clearInterval(interval);
-
-        setTimeout(() => {
-          setShowImage(true);
-        }, 400);
+        setTimeout(() => setShowImage(true), 400);
       }
-    }, 700);
+    }, 600);
 
     return () => clearInterval(interval);
   }, [start]);
 
-  // ✨ SMOOTH REVEAL (ChatGPT style)
+  // ✨ Reveal animation
   useEffect(() => {
     if (!showImage) return;
 
     setRevealStage(1);
-
     const t1 = setTimeout(() => setRevealStage(2), 150);
     const t2 = setTimeout(() => setRevealStage(3), 350);
 
@@ -545,58 +529,58 @@ function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative z-50 border-t border-[#25213b] py-12 lg:py-24"
+      className="relative z-50 border-t border-[#25213b] py-10 sm:py-12 lg:py-20 overflow-hidden"
     >
-      {/* BACKGROUND */}
+      {/* Background */}
       <img
         src="/section.svg"
-        alt="Hero"
-        className="absolute top-0 -z-10 w-full"
+        alt="bg"
+        className="absolute top-0 -z-10 w-full opacity-40"
       />
 
-      <div className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
 
-        {/* TITLE */}
-        <div className="flex justify-center my-10 lg:py-8">
-          <div className="flex items-center">
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-            <span className="bg-[#1a1443] text-white px-3 py-1 text-xl rounded-md">
+        {/* Title */}
+        <div className="flex justify-center my-6 sm:my-10 lg:py-8">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="w-10 sm:w-20 h-[2px] bg-[#1a1443]" />
+            <span className="bg-[#1a1443] text-white px-3 py-1 text-sm sm:text-lg rounded-md">
               About Me
             </span>
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+            <span className="w-10 sm:w-20 h-[2px] bg-[#1a1443]" />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
 
           {/* LEFT */}
           <div>
-
-            <p className="font-medium mb-4 text-[#16f2b3] text-xl uppercase">
+            <p className="font-medium mb-3 text-[#16f2b3] text-lg sm:text-xl uppercase">
               Who I am?
             </p>
 
-            <p className="text-gray-200 text-sm lg:text-base xl:text-lg leading-relaxed font-mono">
+            <p className="text-gray-200 text-xs sm:text-sm md:text-base lg:text-base xl:text-lg leading-relaxed font-mono">
               {displayText}
               {start && (
-                <span className="inline-block w-[8px] h-[18px] ml-1 bg-[#16f2b3] animate-pulse"></span>
+                <span className="inline-block w-[6px] h-[16px] ml-1 bg-[#16f2b3] animate-pulse"></span>
               )}
             </p>
           </div>
 
           {/* RIGHT */}
-          <div className="flex justify-center relative">
+          <div className="flex justify-center relative w-full">
 
-            {/* GLOW */}
-            <div className="absolute w-72 h-72 bg-violet-600/20 blur-3xl rounded-full"></div>
-            <div className="absolute w-60 h-60 bg-pink-500/20 blur-2xl rounded-full"></div>
+            {/* Glow */}
+            <div className="absolute w-40 h-40 sm:w-60 sm:h-60 bg-violet-600/20 blur-3xl rounded-full"></div>
+            <div className="absolute w-32 h-32 sm:w-52 sm:h-52 bg-pink-500/20 blur-2xl rounded-full"></div>
 
-            <div className="relative w-[260px] h-[260px] lg:w-[300px] lg:h-[300px] flex items-center justify-center">
+            {/* Image container */}
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 flex items-center justify-center">
 
-              {/* 🧠 GENERATION TEXT */}
+              {/* Loading text */}
               {!showImage && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-sm text-gray-400 space-y-2">
-
+                <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-xs sm:text-sm text-gray-400 space-y-1 sm:space-y-2">
                   {steps.slice(0, imgStep + 1).map((text, i) => (
                     <p
                       key={i}
@@ -607,20 +591,16 @@ function AboutSection() {
                       {text}
                     </p>
                   ))}
-
                   <span className="text-[#16f2b3] animate-pulse">|</span>
-
-                  {/* shimmer */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse rounded-lg" />
                 </div>
               )}
 
-              {/* 🖼 IMAGE */}
+              {/* Image */}
               <img
                 src={personalData.profile}
                 alt="profile"
                 className={`
-                  w-full h-100 object-cover rounded-lg absolute
+                  w-full h-full object-cover rounded-lg absolute
                   transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
 
                   ${
@@ -633,13 +613,11 @@ function AboutSection() {
                       : "opacity-100 scale-100 blur-0 brightness-100"
                   }
 
-                  grayscale hover:grayscale-0 hover:scale-110
+                  grayscale hover:grayscale-0 hover:scale-105
                 `}
               />
-
             </div>
           </div>
-
         </div>
       </div>
     </section>
